@@ -6,9 +6,9 @@ The article is available here: https://dzone.com/articles/run-code-with-spring-c
 # Ergänzungen Jonas
 
 ## AWS Lambda
-Zwei Lambda-Funktionen, jeweils als Component ("lowercaseFunction" und "uppercaseFuntion"). Bei Upload als AWS-Lambda muss:
-- der korrekte Function-Handler gesetzt werden
-- und das Property FUNCTION_NAME muss auf den Bean-Namen gesetzt werden
+Zwei Lambda-Funktionen, jeweils als Component (`lowercaseFunction` und `uppercaseFuntion`). Bei Upload als AWS-Lambda muss:
+- der korrekte Function-Handler gesetzt werden (`com.morethanheroic.uppercase.handler.aws.LowercaseFunctionHandler` bzw `com.morethanheroic.uppercase.handler.aws.UppercaseFunctionHandler`)
+- und das Property FUNCTION_NAME muss auf den Bean-Namen der Function (`lowercaseFunction` bzw. `uppercaseFuntion`) gesetzt werden
 
 So kann man aus einer jar zwei Lambdas in AWS anlegen, mit unterschiedlichen Funktionen. 
 (Bei Starten des Lambdas werden alle vorhandenen Beans initialisiert, auch die nicht benötigten -> Einschränkung ggf. sinnvoll, über @Conditional..?)
