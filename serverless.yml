@@ -30,19 +30,18 @@ package:
   artifact: target/spring-cloud-function-aws-example-1.0-SNAPSHOT-aws.jar
 
 functions:
-
   uppercase:
     handler: com.morethanheroic.uppercase.handler.aws.UppercaseFunctionHandler
     environment:
       FUNCTION_NAME: uppercaseFunction
-  uppercaseApi:
-    handler: com.morethanheroic.uppercase.handler.aws.ApiGatewayHandler
-    events:
-      - http:
-          path: uppercase
-          method: POST
-    environment:
-      FUNCTION_NAME: uppercaseFunction
+#  uppercaseApi:
+#    handler: com.morethanheroic.uppercase.handler.aws.ApiGatewayHandler
+#    events:
+#      - http:
+#          path: uppercase
+#          method: POST
+#    environment:
+#      FUNCTION_NAME: uppercaseFunction
 
 
 
