@@ -1,12 +1,5 @@
-package com.healthfirst.memberfunction;
+package com.morethanheroic.uppercase.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TimeRequest {
     private String memberId;
 }
