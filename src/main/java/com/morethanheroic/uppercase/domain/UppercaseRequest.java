@@ -1,14 +1,20 @@
-package com.morethanheroic.uppercase.domain;
+package com.healthfirst.memberfunction;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UppercaseRequest {
+    private String userId;
 
-    private String input;
-
-    public String getInput() {
-        return input;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setInput(final String input) {
-        this.input = input;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

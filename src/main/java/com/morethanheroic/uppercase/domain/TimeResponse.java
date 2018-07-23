@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UppercaseResponse {
-    private String userId;
+public class TimeResponse {
+    private String time;
 
-    public String getUserId() {
-        return userId;
+    public String getTime() {
+        return time;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setTime(String time) {
+        this.time = time;
     }
 }
