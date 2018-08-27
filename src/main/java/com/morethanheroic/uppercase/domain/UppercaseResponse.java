@@ -1,14 +1,13 @@
 package com.morethanheroic.uppercase.domain;
 
 public class UppercaseResponse {
+    private String userId;
 
-    private String result;
-
-    public String getResult() {
-        return result;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setResult(final String result) {
-        this.result = result;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
