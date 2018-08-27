@@ -5,3 +5,27 @@ The article is available here: https://dzone.com/articles/run-code-with-spring-c
 
 Command to test the function, not from external, only internal aws:
 `sls remove && mvn clean install && sls deploy && sls invoke -f uppercase -l -d '{"input":"message"}'`
+
+Example to run commands
+
+$ sls invoke -f time
+{
+    "time": "2018-08-27T21:17:31.039"
+}
+
+$ sls invoke -f time -d '{"memberId":"23"}'
+{
+    "time": "2018-08-27T21:13:48.499"
+}
+
+$ sls invoke -f members -d '{"memberId":"23"}'
+{
+    "memberId": "23",
+    "coverage": "MEDICAL"
+}
+
+$ sls invoke -f uppercase -d '{"userId":"asdfjasldf"}'
+{
+    "userId": "ASDFJASLDF"
+}
+
