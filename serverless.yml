@@ -22,10 +22,10 @@ provider:
   runtime: java8
   stage: dev
   region: eu-central-1
-  timeout: 10
+  timeout: 60
 
 package:
-  artifact: target/spring-cloud-function-aws-example-1.0-SNAPSHOT-aws.jar
+  artifact: target/spring-cloud-function-aws-example-2.0.2.BUILD-SNAPSHOT-aws.jar
 
 functions:
   members:
