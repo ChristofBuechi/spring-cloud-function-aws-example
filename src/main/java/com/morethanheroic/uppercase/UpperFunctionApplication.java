@@ -1,14 +1,16 @@
 package com.morethanheroic.uppercase;
 
 import com.morethanheroic.uppercase.domain.*;
+import com.morethanheroic.uppercase.domain.model.TimeObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.function.Function;
 
 @SpringBootApplication
@@ -32,9 +34,16 @@ public class UpperFunctionApplication {
     @Bean
     public Function<TimeRequest, TimeResponse> time() {
         return member -> {
-            TimeResponse response = new TimeResponse();
-            response.setTime(LocalDateTime.now( ZoneId.of("Europe/Paris")).toString());
-            return response;
+            Map<String, String> map = new HashMap<>();
+            map.put("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+            map.put("X-Powered-By", "AWS Lambda & serverless");
+            return TimeResponse
+                    .builder()
+                    .setBase64Encoded(false)
+                    .setObjectBody(new TimeObject())
+                    .setStatusCode(HttpStatus.OK.value())
+                    .setHeaders(map)
+                    .build();
         };
     }
 
