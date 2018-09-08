@@ -34,25 +34,25 @@ public class UpperFunctionApplication {
         return member -> {
 
             String currentTime = "unavailable";
-//            try {
-//                String url = "jdbc:mysql://35.187.39.130:3306/carparts";
-//                String username = "root";
-//                String password = "hidden";
-//
-//                Connection conn = DriverManager.getConnection(url, username, password);
-//                Statement stmt = conn.createStatement();
-//                ResultSet resultSet = stmt.executeQuery("SELECT NOW()");
-//
-//                if (resultSet.next()) {
-//                    currentTime = resultSet.getObject(1).toString();
-//                }
-//
-//                logger.debug("Successfully executed query.  Result: " + currentTime);
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                logger.debug("Caught exception: " + e.getMessage());
-//            }
+            try {
+                String url = "jdbc:mysql://185.101.158.55:3306/cbuechi_carparts_test";
+                String username = "cbuechi_carparts";
+                String password = "hidden";
+
+                Connection conn = DriverManager.getConnection(url, username, password);
+                Statement stmt = conn.createStatement();
+                ResultSet resultSet = stmt.executeQuery("SELECT NOW()");
+
+                if (resultSet.next()) {
+                    currentTime = resultSet.getObject(1).toString();
+                }
+
+                logger.debug("Successfully executed query.  Result: " + currentTime);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                logger.debug("Caught exception: " + e.getMessage());
+            }
 
 
 
