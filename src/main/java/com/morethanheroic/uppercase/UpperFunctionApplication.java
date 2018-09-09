@@ -30,8 +30,8 @@ public class UpperFunctionApplication {
 
 
     @Bean
-    public Function<HealthFirstMemberRequest, HealthFirstMemberResponse> members() {
-        return member -> {
+    public Function<HealthFirstMemberRequest, ApiGatewayResponse> members() {
+        return databaseTime -> {
 
             String currentTime = "unavailable";
             try {
@@ -55,11 +55,14 @@ public class UpperFunctionApplication {
             }
 
 
-
-            HealthFirstMemberResponse response = new HealthFirstMemberResponse();
+            ApiGatewayResponse apiGatewayResponse = new ApiGatewayResponse();
+            DatabaseFirstResponse response = new DatabaseFirstResponse();
             response.setMemberId(currentTime);
-            response.setCoverage(HealthFirstMemberResponse.Coverage.MEDICAL);
-            return response;
+            response.setCoverage(DatabaseFirstResponse.Coverage.DATABASETIME);
+
+
+            apiGatewayResponse.setObjectBody(response);
+            return apiGatewayResponse;
         };
     }
 
@@ -69,22 +72,38 @@ public class UpperFunctionApplication {
             Map<String, String> map = new HashMap<>();
             map.put("Content-Type", MediaType.APPLICATION_JSON_VALUE);
             map.put("X-Powered-By", "AWS Lambda & serverless");
-            return TimeResponse
-                    .builder()
-                    .setBase64Encoded(false)
-                    .setObjectBody(new TimeObject())
-                    .setStatusCode(HttpStatus.OK.value())
-                    .setHeaders(map)
-                    .build();
+            TimeResponse timeResponse = new TimeResponse();
+            timeResponse.setBase64Encoded(false);
+            timeResponse.setObjectBody(new TimeObject());
+            timeResponse.setStatusCode(HttpStatus.OK.value());
+            timeResponse.setHeaders(map);
+            return timeResponse;
         };
     }
 
     @Bean
-    public Function<UppercaseRequest, UppercaseResponse> uppercase() {
-        return member -> {
+    public Function<UppercaseRequest, ApiGatewayResponse> uppercase() {
+        return uppercaseRequest -> {
             UppercaseResponse response = new UppercaseResponse();
-            response.setUserId(member.getUserId().toUpperCase(Locale.ENGLISH));
-            return response;
+            String variable;
+            logger.warn("is request empty ? {}" , uppercaseRequest == null);
+            if (uppercaseRequest == null) {
+                variable = "emptyRequest";
+            } else {
+                logger.warn("is request.getUserId empty ? {}" , uppercaseRequest.getUserId() == null);
+                if (uppercaseRequest.getUserId() == null) {
+                    variable = "emptyValue";
+                } else {
+                    variable = uppercaseRequest.getUserId();
+                }
+            }
+
+            response.setUserId(variable.toUpperCase(Locale.ENGLISH));
+
+            ApiGatewayResponse apiGatewayResponse = new ApiGatewayResponse();
+            apiGatewayResponse.setBase64Encoded(false);
+            apiGatewayResponse.setObjectBody(response);
+            return apiGatewayResponse;
         };
     }
 }

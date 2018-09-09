@@ -29,15 +29,23 @@ package:
 
 functions:
   members:
-    handler: com.morethanheroic.uppercase.handler.aws.AwsLambdaHandler
+    handler: com.morethanheroic.uppercase.handler.aws.DatabaseTimeHandler
     environment:
       FUNCTION_NAME: members
+    events:
+    - http: GET members
   time:
-    handler: com.morethanheroic.uppercase.handler.aws.TimeHandler
+    handler: com.morethanheroic.uppercase.handler.aws.JvmTimeHandler
     environment:
       FUNCTION_NAME: time
+    events:
+    - http: GET time
   uppercase:
     handler: com.morethanheroic.uppercase.handler.aws.UppercaseHandler
+    events:
+      - http:
+          path: uppercase
+          method: POST
     environment:
       FUNCTION_NAME: uppercase
 #  uppercaseApi:
@@ -66,12 +74,12 @@ functions:
 #      FUNCTION_NAME: hello
 
 #  time:
-#    handler: com.serverless.handler.aws.TimeHandler
+#    handler: com.serverless.handler.aws.JvmTimeHandler
 #    environment:
 #      FUNCTION_NAME: time
 
 #  timeApi:
-#    handler: com.serverless.handler.aws.TimeHandler
+#    handler: com.serverless.handler.aws.JvmTimeHandler
 #    events:
 #      - http:
 #          path: time

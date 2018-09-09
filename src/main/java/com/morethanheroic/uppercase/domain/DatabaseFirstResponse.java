@@ -1,6 +1,6 @@
 package com.morethanheroic.uppercase.domain;
 
-public class HealthFirstMemberResponse {
+public class DatabaseFirstResponse {
     private String memberId;
     private Coverage coverage;
 
@@ -21,6 +21,6 @@ public class HealthFirstMemberResponse {
     }
 
     public enum Coverage {
-        MEDICAL, DENTAL, VISION, NONE
+        DATABASETIME, DENTAL, VISION, NONE
     }
 }
