@@ -1,5 +1,6 @@
 package com.morethanheroic.uppercase;
 
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.morethanheroic.uppercase.domain.*;
 import com.morethanheroic.uppercase.domain.model.TimeObject;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.messaging.Message;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -82,8 +84,12 @@ public class UpperFunctionApplication {
     }
 
     @Bean
-    public Function<UppercaseRequest, UppercaseResponse> uppercase() {
-        return uppercaseRequest -> {
+    public Function<Message<UppercaseRequest>, UppercaseResponse> uppercase() {
+        return message -> {
+            APIGatewayProxyRequestEvent headers = message.getHeaders().get("request", APIGatewayProxyRequestEvent.class);
+            logger.warn("sourceIP: {}", headers.getRequestContext().getIdentity().getSourceIp());
+
+            UppercaseRequest uppercaseRequest = message.getPayload();
             UppercaseResponse response = new UppercaseResponse();
             String variable;
             logger.warn("is request empty ? {}" , uppercaseRequest == null);
