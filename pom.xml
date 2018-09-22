@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <start-class>com.morethanheroic.uppercase.UpperFunctionApplication</start-class>
+        <start-class>ch.christofbuechi.lambda.UpperFunctionApplication</start-class>
     </properties>
 
     <dependencies>

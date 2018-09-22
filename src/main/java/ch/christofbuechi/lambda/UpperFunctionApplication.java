@@ -1,8 +1,10 @@
-package com.morethanheroic.uppercase;
+package ch.christofbuechi.lambda;
 
+import ch.christofbuechi.lambda.domain.*;
+import ch.christofbuechi.lambda.domain.model.DatabaseTimeObject;
+import ch.christofbuechi.lambda.domain.model.TimeSource;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
-import com.morethanheroic.uppercase.domain.*;
-import com.morethanheroic.uppercase.domain.model.TimeObject;
+import ch.christofbuechi.lambda.domain.model.JvmTimeObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -26,13 +28,13 @@ public class UpperFunctionApplication {
 
     Logger logger = LoggerFactory.getLogger(UpperFunctionApplication.class);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(UpperFunctionApplication.class, args);
     }
 
 
     @Bean
-    public Function<HealthFirstMemberRequest, ApiGatewayResponse> members() {
+    public Function<DatabaseTimeRequest, DatabaseTimeResponse> databaseTime() {
         return databaseTime -> {
 
             String currentTime = "unavailable";
@@ -56,30 +58,24 @@ public class UpperFunctionApplication {
                 logger.debug("Caught exception: " + e.getMessage());
             }
 
-
-            ApiGatewayResponse apiGatewayResponse = new ApiGatewayResponse();
-            DatabaseFirstResponse response = new DatabaseFirstResponse();
-            response.setMemberId(currentTime);
-            response.setCoverage(DatabaseFirstResponse.Coverage.DATABASETIME);
-
-
-            apiGatewayResponse.setObjectBody(response);
-            return apiGatewayResponse;
+            DatabaseTimeResponse response = new DatabaseTimeResponse();
+            response.setObjectBody(new DatabaseTimeObject(currentTime, TimeSource.DATABASE));
+            return response;
         };
     }
 
     @Bean
-    public Function<TimeRequest, TimeResponse> time() {
-        return member -> {
+    public Function<JvmTimeRequest, JvmTimeResponse> jvmTime() {
+        return timeRequest -> {
             Map<String, String> map = new HashMap<>();
             map.put("Content-Type", MediaType.APPLICATION_JSON_VALUE);
             map.put("X-Powered-By", "AWS Lambda & serverless");
-            TimeResponse timeResponse = new TimeResponse();
-            timeResponse.setBase64Encoded(false);
-            timeResponse.setObjectBody(new TimeObject());
-            timeResponse.setStatusCode(HttpStatus.OK.value());
-            timeResponse.setHeaders(map);
-            return timeResponse;
+            JvmTimeResponse jvmTimeResponse = new JvmTimeResponse();
+            jvmTimeResponse.setBase64Encoded(false);
+            jvmTimeResponse.setObjectBody(new JvmTimeObject());
+            jvmTimeResponse.setStatusCode(HttpStatus.OK.value());
+            jvmTimeResponse.setHeaders(map);
+            return jvmTimeResponse;
         };
     }
 

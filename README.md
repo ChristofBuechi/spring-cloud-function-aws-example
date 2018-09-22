@@ -13,15 +13,15 @@ $ sls invoke -f time
     "time": "2018-08-27T21:17:31.039"
 }
 
-$ sls invoke -f time -d '{"memberId":"23"}'
+$ sls invoke -f time -d '{"currentTime":"23"}'
 {
     "time": "2018-08-27T21:13:48.499"
 }
 
-$ sls invoke -f members -d '{"memberId":"23"}'
+$ sls invoke -f members -d '{"currentTime":"23"}'
 {
-    "memberId": "23",
-    "coverage": "MEDICAL"
+    "currentTime": "23",
+    "timeSource": "MEDICAL"
 }
 
 $ sls invoke -f uppercase -d '{"userId":"asdfjasldf"}'

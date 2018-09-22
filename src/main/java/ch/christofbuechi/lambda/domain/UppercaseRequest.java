@@ -1,6 +1,6 @@
-package com.morethanheroic.uppercase.domain;
+package ch.christofbuechi.lambda.domain;
 
-public class UppercaseResponse {
+public class UppercaseRequest {
     private String userId;
 
     public String getUserId() {

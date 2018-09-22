@@ -28,117 +28,23 @@ package:
   artifact: target/spring-cloud-function-aws-example-2.0.2.BUILD-SNAPSHOT-aws.jar
 
 functions:
-  members:
-    handler: com.morethanheroic.uppercase.handler.aws.DatabaseTimeHandler
+  databaseTime:
+    handler: ch.christofbuechi.lambda.handler.aws.DatabaseTimeHandler
     environment:
-      FUNCTION_NAME: members
+      FUNCTION_NAME: databaseTime
     events:
-    - http: GET members
-  time:
-    handler: com.morethanheroic.uppercase.handler.aws.JvmTimeHandler
+    - http: GET databaseTime
+  jvmTime:
+    handler: ch.christofbuechi.lambda.handler.aws.JvmTimeHandler
     environment:
-      FUNCTION_NAME: time
+      FUNCTION_NAME: jvmTime
     events:
-    - http: GET time
+    - http: GET jvmTime
   uppercase:
-    handler: com.morethanheroic.uppercase.handler.aws.UppercaseHandler
+    handler: ch.christofbuechi.lambda.handler.aws.UppercaseHandler
     events:
       - http:
           path: uppercase
           method: POST
     environment:
       FUNCTION_NAME: uppercase
-#  uppercaseApi:
-#    handler: com.morethanheroic.uppercase.handler.aws.ApiGatewayHandler
-#    events:
-#      - http:
-#          path: uppercase
-#          method: POST
-#    environment:
-#      FUNCTION_NAME: uppercaseFunction
-
-
-
-#  hello:
-#    handler: com.serverless.handler.aws.HelloHandler
-#    environment:
-#      FUNCTION_NAME: hello
-
-#  helloApi:
-#    handler: com.serverless.handler.aws.ApiGatewayHandler
-#    events:
-#      - http:
-#          path: hello
-#          method: POST
-#    environment:
-#      FUNCTION_NAME: hello
-
-#  time:
-#    handler: com.serverless.handler.aws.JvmTimeHandler
-#    environment:
-#      FUNCTION_NAME: time
-
-#  timeApi:
-#    handler: com.serverless.handler.aws.JvmTimeHandler
-#    events:
-#      - http:
-#          path: time
-#          method: GET
-#          cors:
-#            origin: '*'
-#            headers:
-#              - Content-Type
-#              - X-Amz-Date
-#              - Authorization
-#              - X-Api-Key
-#              - X-Amz-Security-Token
-#              - X-Amz-User-Agent
-#            allowCredentials: false
-#    environment:
-#      FUNCTION_NAME: time
-
-
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
-#      - s3: ${env:BUCKET}
-#      - schedule: rate(10 minutes)
-#      - sns: greeter-topic
-#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
-#      - alexaSkill
-#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
-#      - iot:
-#          sql: "SELECT * FROM 'some_topic'"
-#      - cloudwatchEvent:
-#          event:
-#            source:
-#              - "aws.ec2"
-#            detail-type:
-#              - "EC2 Instance State-change Notification"
-#            detail:
-#              state:
-#                - pending
-#      - cloudwatchLog: '/aws/lambda/hello'
-#      - cognitoUserPool:
-#          pool: MyUserPool
-#          trigger: PreSignUp
-
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
-
-# you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"

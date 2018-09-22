@@ -1,4 +1,4 @@
-package com.morethanheroic.uppercase.domain;
+package ch.christofbuechi.lambda.domain;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

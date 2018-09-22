@@ -1,4 +1,4 @@
-package com.morethanheroic.uppercase.handler.aws;
+package ch.christofbuechi.lambda.handler.aws;
 
 import org.springframework.cloud.function.adapter.aws.SpringBootApiGatewayRequestHandler;
 

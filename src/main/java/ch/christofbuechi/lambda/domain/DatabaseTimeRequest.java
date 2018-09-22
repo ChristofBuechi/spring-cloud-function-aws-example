@@ -1,7 +1,7 @@
-package com.morethanheroic.uppercase.domain;
+package ch.christofbuechi.lambda.domain;
 
 
-public class HealthFirstMemberRequest {
+public class DatabaseTimeRequest {
     private String memberId;
 
     public String getMemberId() {
