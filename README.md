@@ -9,18 +9,7 @@ Command to test the function, not from external, only internal aws:
 Example to run commands
 
 $ sls invoke -f jvmTime<br>
-{
-    "time": "2018-08-27T21:17:31.039"
-}
+{"currentTime":"2018-09-22T22:30:50.842","timeSource":"JVM"}
 
 $ sls invoke -f databaseTime<br>
-{
-    "currentTime": "23",
-    "timeSource": "MEDICAL"
-}
-
-$ sls invoke -f uppercase -d '{"userId":"asdfjasldf"}'
-{
-    "userId": "ASDFJASLDF"
-}
-
+{"currentTime":"2018-09-22T22:30:50.842","timeSource":"DATABASE"}
