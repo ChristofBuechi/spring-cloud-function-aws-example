@@ -82,7 +82,7 @@ public class UpperFunctionApplication {
     }
 
     @Bean
-    public Function<UppercaseRequest, ApiGatewayResponse> uppercase() {
+    public Function<UppercaseRequest, UppercaseResponse> uppercase() {
         return uppercaseRequest -> {
             UppercaseResponse response = new UppercaseResponse();
             String variable;
@@ -100,10 +100,7 @@ public class UpperFunctionApplication {
 
             response.setUserId(variable.toUpperCase(Locale.ENGLISH));
 
-            ApiGatewayResponse apiGatewayResponse = new ApiGatewayResponse();
-            apiGatewayResponse.setBase64Encoded(false);
-            apiGatewayResponse.setObjectBody(response);
-            return apiGatewayResponse;
+            return response;
         };
     }
 }
