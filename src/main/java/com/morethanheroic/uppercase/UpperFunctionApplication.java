@@ -1,5 +1,6 @@
 package com.morethanheroic.uppercase;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.morethanheroic.uppercase.domain.*;
 import com.morethanheroic.uppercase.domain.model.TimeObject;
 import org.slf4j.Logger;
@@ -87,5 +88,19 @@ public class UpperFunctionApplication {
                 return new UppercaseResponse(new UpperCaseResponseObject(uppercaseRequest));
             }
         };
+    }
+
+    private Map<String, Object> buildAwsLambdaProxyResponse(Object response) {
+        try {
+            Map<String, Object> gatewayResponse = new HashMap<>();
+            gatewayResponse.put("statusCode", HttpStatus.OK.value());
+            gatewayResponse.put("isBase64Encoded", false);
+//            gatewayResponse.put("body", this.objectMapper.writeValueAsString(response));
+            gatewayResponse.put("headers", new HashMap<>());
+            return gatewayResponse;
+        }
+        catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
