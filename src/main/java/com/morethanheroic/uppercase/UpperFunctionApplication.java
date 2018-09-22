@@ -81,10 +81,11 @@ public class UpperFunctionApplication {
 
     @Bean
     public Function<UppercaseRequest, UppercaseResponse> uppercase() {
-        return member -> {
-            UppercaseResponse response = new UppercaseResponse();
-            response.setUserId(member.getUserId().toUpperCase(Locale.ENGLISH));
-            return response;
+        return new Function<UppercaseRequest, UppercaseResponse>() {
+            @Override
+            public UppercaseResponse apply(UppercaseRequest uppercaseRequest) {
+                return new UppercaseResponse(new UpperCaseResponseObject(uppercaseRequest));
+            }
         };
     }
 }
