@@ -4,21 +4,16 @@ The article is available here: https://dzone.com/articles/run-code-with-spring-c
 
 
 Command to test the function, not from external, only internal aws:
-`sls remove && mvn clean install && sls deploy && sls invoke -f uppercase -l -d '{"input":"message"}'`
+`sls remove && mvn clean install && sls deploy && sls invoke -f jvmTime
 
 Example to run commands
 
-$ sls invoke -f time
+$ sls invoke -f jvmTime<br>
 {
     "time": "2018-08-27T21:17:31.039"
 }
 
-$ sls invoke -f time -d '{"currentTime":"23"}'
-{
-    "time": "2018-08-27T21:13:48.499"
-}
-
-$ sls invoke -f members -d '{"currentTime":"23"}'
+$ sls invoke -f databaseTime<br>
 {
     "currentTime": "23",
     "timeSource": "MEDICAL"
